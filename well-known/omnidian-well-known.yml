@@ -1,0 +1,52 @@
+generated: '2026-08-04'
+method: probed
+source: live GET of /.well-known/* on every Omnidian host discovered in this pass
+found: 0
+note: >-
+  No /.well-known/ discovery document is served on any Omnidian host. Recorded as a
+  negative probe result so a later round does not re-litigate it. NOTE: the Client
+  Portal single-page app answers HTTP 200 with an HTML shell for EVERY path, including
+  every /.well-known/* path — those 200s are a catch-all, not discovery documents, and
+  are rejected here. No apis.yml WellKnown/SecurityTxt pointer is wired, because
+  nothing was found.
+documents: []
+probes:
+- host: https://www.omnidian.com
+  results:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://api.service.omnidian.com
+  note: Omnidian API gateway; anonymous requests are rejected before routing
+  results:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/openid-configuration, status: 401}
+  - {path: /.well-known/oauth-authorization-server, status: 401}
+  - {path: /.well-known/oauth-protected-resource, status: 401}
+  - {path: /.well-known/api-catalog, status: 401}
+  - {path: /.well-known/agent-card.json, status: 401}
+  - {path: /.well-known/agent.json, status: 401}
+- host: https://client-portal.service.omnidian.com
+  note: >-
+    SPA catch-all — every status below is an HTML document titled "Omnidian Client
+    Portal", not a discovery document. Rejected.
+  results:
+  - {path: /.well-known/security.txt, status: 200, body: text/html, accepted: false}
+  - {path: /.well-known/openid-configuration, status: 200, body: text/html, accepted: false}
+  - {path: /.well-known/agent-card.json, status: 200, body: text/html, accepted: false}
+  - {path: /.well-known/agent.json, status: 200, body: text/html, accepted: false}
+- host: https://privacy.omnidian.com
+  note: DataGrail-hosted privacy request center
+  results:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: https://support.omnidian.com
+  note: Salesforce Experience Cloud help center
+  results:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/agent-card.json, status: 401}
+  - {path: /.well-known/agent.json, status: 401}

@@ -1,17 +1,35 @@
 aid: omnidian
 name: Omnidian
-description: 'Omnidian is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Omnidian, Inc. is a Seattle-based clean energy performance assurance company,
+  founded in 2015, that protects and accelerates investments in residential and commercial
+  solar and battery storage. Its proprietary, machine-learning driven software platform
+  continuously monitors distributed solar assets, diagnoses hardware, communication and
+  environmental faults such as soiling, shading and snow, dispatches a nationwide field
+  service technician network across 48 states, Washington D.C. and Puerto Rico, and
+  underwrites a 95% energy production guarantee that reimburses owners for covered
+  shortfalls. Omnidian serves installers, EPCs, developers, IPPs, solar financing providers,
+  commercial real estate owners and asset investors, and is a Certified B Corporation and
+  a member of the SunSpec Alliance. Its monitoring platform, client portal and field service
+  partner portal are operated as private, authenticated systems; Omnidian publishes no
+  public developer program, API documentation, or machine-readable API contract.'
+image: https://www.omnidian.com/wp-content/uploads/2023/12/logo3x.png
 url: https://raw.githubusercontent.com/api-evangelist/omnidian/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
 specificationVersion: '0.20'
 created: '2026-08-04'
 modified: '2026-08-04'
 tags:
 - Company
+- Energy
+- Solar
+- Clean Energy
+- Renewable Energy
+- Asset Management
+- Monitoring
+- Performance Assurance
+- Battery Storage
+- Field Service
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +37,49 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/omnidian-domain-security.yml
 - type: Website
+  url: https://www.omnidian.com/
+- type: Blog
+  url: https://www.omnidian.com/insights/
+- type: Support
+  url: https://www.omnidian.com/commercial-client-support/
+- type: HelpCenter
+  url: https://support.omnidian.com/HelpCenter/s/
+- type: TermsOfService
+  url: https://www.omnidian.com/msa/
+- type: PrivacyPolicy
+  url: https://www.omnidian.com/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/omnidian
+- type: SecondaryMarket
   url: https://forgeglobal.com/omnidian_stock/
+- type: LLMsTxt
+  url: llms/omnidian-llms.txt
+x-enrichment:
+  date: '2026-08-04'
+  status: minimal
+  artifacts_added: 3
+  pass: local-v1
+x-coverage:
+  state: gated
+  reason: partner-login
+  detail: >-
+    Omnidian's production API gateway at api.service.omnidian.com (CNAME
+    api-gateway-kube.service.omnidian.com) rejects every anonymous request with HTTP 401 —
+    including /openapi.json, /graphql and every /.well-known/* path — and the only reachable
+    human surfaces are the Client Portal SPA and a Salesforce Field Service Partner Portal
+    login, while the marketing site's full page sitemap contains no developer, API or
+    documentation page at all.
+  evidence:
+  - url: https://api.service.omnidian.com/openapi.json
+    status: 401
+  - url: https://api.service.omnidian.com/graphql
+    status: 401
+  - url: https://www.omnidian.com/.well-known/api-catalog
+    status: 404
+  - url: https://omnidian.my.site.com/OmnidianFieldServicePartnerPortal/s/
+    status: 200
+  checked: '2026-08-04'
+
