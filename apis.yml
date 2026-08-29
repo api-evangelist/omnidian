@@ -12,6 +12,17 @@ description: 'Omnidian, Inc. is a Seattle-based clean energy performance assuran
   a member of the SunSpec Alliance. Its monitoring platform, client portal and field service
   partner portal are operated as private, authenticated systems; Omnidian publishes no
   public developer program, API documentation, or machine-readable API contract.'
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 image: https://www.omnidian.com/wp-content/uploads/2023/12/logo3x.png
 url: https://raw.githubusercontent.com/api-evangelist/omnidian/refs/heads/main/apis.yml
 x-type: company
